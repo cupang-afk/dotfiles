@@ -3,3 +3,10 @@
 !.config/
 !.config/foot/*
 !.config/sway/*
+!.config/environment.d/*
+!.themes/
+!.themes/*
+!.icons/
+!.icons/*
+!.gtkrc-2.0
+!README.md

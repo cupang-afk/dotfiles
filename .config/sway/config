@@ -10,6 +10,7 @@ default_floating_border none
 gaps inner 0
 gaps outer 0
 workspace_auto_back_and_forth yes
+seat seat0 xcursor_theme Chicago95_Cursor_White 0
 
 # Toggle floating
 bindsym $mod+Shift+space floating toggle
