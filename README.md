@@ -13,38 +13,34 @@ Windows 95 themed sway setup on Fedora.
 | Cursor | Chicago95_Cursor_White | grassmunk/Chicago95 |
 | Font | Bm437 IBM VGA 8x16 | [int10h.org](https://int10h.org/oldschool-pc-fonts/) |
 
-## Setup (outside git)
+## Install
 
-### 1. Install packages
+### Packages
 
 ```bash
 dnf install qt5ct qt5-qtstyleplugins sway foot jq
 ```
 
-### 2. Download themes
+### Themes
 
 ```bash
 git clone https://github.com/grassmunk/Chicago95.git /tmp/Chicago95
 git clone https://github.com/B00merang-Project/Windows-95.git /tmp/Windows-95
-```
 
-### 3. Install themes
-
-```bash
 mkdir -p ~/.themes ~/.icons
 cp -r /tmp/Chicago95/Theme/Chicago95 ~/.themes/
 cp -r /tmp/Windows-95 "Windows 95" ~/.themes/
 cp -r /tmp/Chicago95/Icons/* ~/.icons/
 ```
 
-### 4. Copy Qt5 color palette
+### Qt5 color palette
 
 ```bash
 sudo mkdir -p /usr/share/qt5ct/colors
 sudo cp /tmp/Chicago95/Extras/Chicago95_qt.conf /usr/share/qt5ct/colors/
 ```
 
-### 5. Install IBM VGA font
+### IBM VGA font
 
 ```bash
 curl -L -o /tmp/otb.zip "https://int10h.org/oldschool-pc-fonts/download/oldschool_pc_font_pack_v2.2_FULL.zip"
@@ -54,36 +50,12 @@ cp "/tmp/otb - Bm (linux bitmap)/Bm437_IBM_VGA_8x16.otb" /usr/local/share/fonts/
 fc-cache -f
 ```
 
-### 6. Configure qt5ct
+### qt5ct
 
 Run `qt5ct` and set:
 - Style: **Windows**
 - Palette: **Custom** → **Chicago95_qt**
 - Icons: **Chicago95**
-
-### 7. Enable SELinux policy for ly (if needed)
-
-```bash
-cat > /tmp/ly-local.te << 'EOF'
-module ly-local 1.0;
-require {
-    type unconfined_service_t;
-    type unconfined_t;
-    class process transition;
-}
-allow unconfined_service_t unconfined_t:process transition;
-EOF
-checkmodule -M -m -o /tmp/ly-local.mod /tmp/ly-local.te
-semodule_package -o /tmp/ly-local.pp -m /tmp/ly-local.mod
-sudo semodule -i /tmp/ly-local.pp
-```
-
-### 8. Enable ly display manager
-
-```bash
-sudo systemctl enable ly@tty1
-sudo systemctl disable getty@tty1
-```
 
 ## Keybinds
 
