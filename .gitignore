@@ -1,9 +1,5 @@
 *
 !.gitignore
 !.config/
-!.config/foot/
-!.config/foot/foot.ini
-!.config/sway/
-!.config/sway/config
-!.config/sway/kill-or-switch.sh
-!.config/sway/workspace-foot.sh
+!.config/foot/*
+!.config/sway/*
